@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beverly P. Lagura | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --accent-light: #5dade2;
+            --bg-light: #f4f6f9;
+            --text: #333;
+            --text-light: #666;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: var(--accent-light); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-light);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-light); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            bottom: -80px;
+            left: -80px;
+        }
+
+        .hero-content { position: relative; z-index: 2; max-width: 700px; }
+
+        /* BAGONG CSS PARA SA PROFILE PICTURE */
+        .avatar-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            margin: 0 auto 1.5rem;
+            display: block;
+            box-shadow: 0 0 30px rgba(52, 152, 219, 0.6);
+            background-color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .sub-info {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background: #fff;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 0.4rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.6);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* Sections */
+        section { padding: 5rem 2rem; }
+        section:nth-child(even) { background: var(--bg-light); }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .about-text strong { color: var(--primary); }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .info-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover { transform: translateY(-5px); }
+
+        .info-card h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            font-size: 0.95rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .project-header {
+            height: 160px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 3rem;
+        }
+
+        .project-card:nth-child(2) .project-header {
+            background: linear-gradient(135deg, #16a085, #2c3e50);
+        }
+
+        .project-body { padding: 1.8rem; flex: 1; display: flex; flex-direction: column; }
+
+        .project-body h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-body p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            flex: 1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: #eaf4fc;
+            color: var(--accent);
+            font-size: 0.78rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover { transform: translateY(-5px); }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.2rem;
+            color: #fff;
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+        }
+
+        .skill-chip {
+            background: var(--bg-light);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #e0e6ed;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: #fff;
+            padding: 2rem 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(52, 152, 219, 0.2);
+        }
+
+        .contact-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-card h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-card p {
+            color: var(--text-light);
+            font-size: 0.92rem;
+            word-break: break-word;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { gap: 1rem; font-size: 0.85rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero .tagline { font-size: 1rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .info-cards { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.8rem; }
+            .nav-links a { font-size: 0.8rem; }
+        }
+
+        @media (max-width: 500px) {
+            .nav-container { flex-direction: column; gap: 0.8rem; }
+            .nav-links { gap: 0.8rem; }
+            .hero h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Beverly<span>.</span>Lagura</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <!-- DIRI NA NAKALAGAY ANG IMO PICTURE -->
+            <img src="profile.png.png" alt="Beverly P. Lagura" class="avatar-img">
+            
+            <h1>Beverly P. Lagura</h1>
+            <p class="tagline">Aspiring IT Professional &amp; Problem Solver</p>
+            <p class="sub-info">BSIS Student · CARD-MRI Development Institute</p>
+            <a href="#projects" class="btn">View My Work</a>
+            <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+    </header>
+
+    <!-- ABOUT ME -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Get to know the person behind the code</p>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Hello! I'm <strong>Beverly P. Lagura</strong>, a 2nd-year Bachelor of Science in Information Systems (BSIS) student at <strong>CARD-MRI Development Institute</strong>.</p>
+                    <p>I have a strong passion for understanding how technology solves real-world problems. My academic journey has fueled my interest in <strong>systems analysis, database management, software development, and UI design</strong>.</p>
+                    <p>I enjoy the process of breaking down complex requirements and turning them into functional, user-friendly applications. My goal is to build a career as an <strong>IT Support Specialist or Technical Support Representative</strong> — helping users navigate technical challenges and ensuring smooth system operations.</p>
+                </div>
+
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h3>Education</h3>
+                        <p>CARD-MRI Development Institute<br>BS Information Systems</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Year Level</h3>
+                        <p>2nd Year Student</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Focus Areas</h3>
+                        <p>Systems Analysis &amp; Databases</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Career Goal</h3>
+                        <p>IT Support Specialist / Tech Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-subtitle">A selection of applications I've developed during my studies</p>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">⚖️</div>
+                    <div class="project-body">
+                        <h3>BMI Calculator Desktop Application</h3>
+                        <p>A desktop application that computes a user's Body Mass Index from weight and height inputs, featuring a clean graphical interface for easy interaction.</p>
+                        <div class="tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">Java Swing</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">NetBeans</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">🛒</div>
+                    <div class="project-body">
+                        <h3>Point of Sale (POS) Checkout Application</h3>
+                        <p>A functional POS simulation built to streamline retail checkout — handling item scanning, price totals, transaction processing, and inventory management.</p>
+                        <div class="tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">VS Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills &amp; Tools</h2>
+            <p class="section-subtitle">Technologies I work with and concepts I understand</p>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon">💻</div>
+                    <h3>Programming Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-chip">C++</span>
+                        <span class="skill-chip">Java</span>
+                        <span class="skill-chip">JavaScript</span>
+                        <span class="skill-chip">SQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>Data &amp; Systems</h3>
+                    <div class="skill-list">
+                        <span class="skill-chip">Database Management</span>
+                        <span class="skill-chip">Systems Analysis</span>
+                        <span class="skill-chip">UI Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">🛠️</div>
+                    <h3>Tools &amp; Software</h3>
+                    <div class="skill-list">
+                        <span class="skill-chip">Apache NetBeans</span>
+                        <span class="skill-chip">Visual Studio Code</span>
+                        <span class="skill-chip">Java Swing</span>
+                        <span class="skill-chip">Canva</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-subtitle">Let's connect — I'm open to opportunities and collaboration</p>
+
+            <div class="contact-grid">
+                <a href="mailto:your.email@example.com" class="contact-card">
+                    <div class="icon">✉️</div>
+                    <h4>Email</h4>
+                    <p>your.email@example.com</p>
+                </a>
+
+                <a href="tel:+639000000000" class="contact-card">
+                    <div class="icon">📞</div>
+                    <h4>Phone</h4>
+                    <p>+63 900 000 0000</p>
+                </a>
+
+                <a href="https://instagram.com/yourusername" target="_blank" class="contact-card">
+                    <div class="icon">📸</div>
+                    <h4>Instagram</h4>
+                    <p>@yourusername</p>
+                </a>
+
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-card">
+                    <div class="icon">💼</div>
+                    <h4>LinkedIn</h4>
+                    <p>linkedin.com/in/yourprofile</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Beverly P. Lagura · BSIS Student · CARD-MRI Development Institute</p>
+    </footer>
+
+</body>
+</html>
